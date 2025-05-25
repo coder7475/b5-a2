@@ -101,7 +101,14 @@ ON species.species_id = sightings.species_id
 WHERE sighting_time IS NULL;
 
 
-
+-- Problem 6 - Solution
+-- Show the most recent 2 sightings
+SELECT common_name, sighting_time, name 
+FROM sightings
+JOIN rangers ON sightings.ranger_id = rangers.ranger_id
+JOIN species ON sightings.species_id = species.species_id  
+ORDER BY sighting_time DESC
+LIMIT 2;
 
 
 
