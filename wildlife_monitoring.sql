@@ -110,5 +110,27 @@ JOIN species ON sightings.species_id = species.species_id
 ORDER BY sighting_time DESC
 LIMIT 2;
 
+-- Problem 7 - Solution
+-- Update all species discovered before year 1800 
+-- to have status 'Historic'
+UPDATE species
+SET conservation_status = 'Historic'
+WHERE EXTRACT(YEAR FROM discover_date) < 1800;
+
+-- See updated status 
+SELECT * FROM species;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
