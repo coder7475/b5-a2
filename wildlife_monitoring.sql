@@ -78,8 +78,9 @@ SELECT count(DISTINCT scientific_name)
 AS unique_species_count
 FROM species;
 
-
-
+-- Problem 3 - Solution
+-- All sigtings where location include 'Pass'
+SELECT * FROM sightings WHERE location LIKE '%Pass%';
 
 
 
