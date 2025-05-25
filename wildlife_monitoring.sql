@@ -110,6 +110,7 @@ JOIN species ON sightings.species_id = species.species_id
 ORDER BY sighting_time DESC
 LIMIT 2;
 
+
 -- Problem 7 - Solution
 -- Update all species discovered before year 1800 
 -- to have status 'Historic'
@@ -121,6 +122,19 @@ WHERE EXTRACT(YEAR FROM discover_date) < 1800;
 SELECT * FROM species;
 
 
+-- Problem 8 - Solution
+-- Label each sightings time of day
+-- as 'Morning', 'Afternoon' or 'Evening'
+SELECT
+  sighting_id,
+  CASE
+    WHEN EXTRACT(HOUR FROM sighting_time) < 12 
+        THEN 'Morning'
+    WHEN EXTRACT(HOUR FROM sighting_time) >= 12 AND EXTRACT(HOUR FROM sighting_time) <= 17 
+        THEN 'Afternoon'
+    ELSE 'Evening'
+  END AS time_of_day
+FROM sightings;
 
 
 
