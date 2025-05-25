@@ -73,7 +73,10 @@ SELECT * FROM rangers;
 
 
 -- Problem 2 - Solution
-
+-- Count unique species ever sighted
+SELECT count(DISTINCT scientific_name) 
+AS unique_species_count
+FROM species;
 
 
 
