@@ -93,8 +93,12 @@ ON rangers.ranger_id = sightings.ranger_id
 GROUP BY name;
 
 
-
-
+-- Problem 5 - Solution
+-- List species that have never sighted
+SELECT common_name FROM species
+LEFT JOIN sightings
+ON species.species_id = sightings.species_id
+WHERE sighting_time IS NULL;
 
 
 
