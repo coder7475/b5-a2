@@ -60,3 +60,34 @@ VALUES
 
 -- See the sample data
 SELECT * FROM sightings;
+
+
+-- Problem 1 - Solution
+-- Add a new ranger
+INSERT INTO rangers (name, region)
+VALUES
+    ('Derek Fox', 'Coastal Plains');
+
+-- See Result
+SELECT * FROM rangers;
+
+
+-- Problem 2 - Solution
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
