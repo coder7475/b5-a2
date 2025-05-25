@@ -28,3 +28,13 @@ CREATE TABLE sightings (
    notes TEXT
 );
 
+-- ? ADD Sample datas
+-- Add sample data in ranger table
+INSERT INTO rangers (name, region) 
+VALUES 
+  ('Alice Green', 'Northern Hills'),
+  ('Bob White', 'River Delta'),
+  ('Carol King', 'Mountain Range');
+
+-- See sample values
+SELECT * FROM rangers;
