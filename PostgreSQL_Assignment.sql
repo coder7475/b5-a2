@@ -1,5 +1,6 @@
 -- Create Database
 CREATE DATABASE conservation_db;
+--! Conncet to conservation_db
 
 -- ? Create Tables for the database
 -- Create Ranger table
@@ -152,8 +153,8 @@ WHERE ranger_id IN (
 -- See if derek is deleted
 SELECT * FROM rangers;
 
-
-
+-- Final Cleaning - Drop all tables
+DROP TABLE rangers, species, sightings;
 
 
 
