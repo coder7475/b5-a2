@@ -91,7 +91,8 @@ SELECT name, count(sighting_time) AS total_sightings
 FROM rangers 
 JOIN sightings
 ON rangers.ranger_id = sightings.ranger_id
-GROUP BY name;
+GROUP BY name 
+ORDER BY name;
 
 
 -- Problem 5 - Solution
