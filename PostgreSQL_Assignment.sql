@@ -6,17 +6,17 @@ CREATE DATABASE conservation_db;
 -- Create Ranger table
 CREATE TABLE rangers (
     ranger_id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL,
-    region TEXT NOT NULL
+    name VARCHAR(50) NOT NULL,
+    region VARCHAR(100) NOT NULL
 );
 
 -- Create species table
 CREATE TABLE species (
     species_id SERIAL PRIMARY KEY,
-    common_name TEXT NOT NULL,
-    scientific_name TEXT NOT NULL,
+    common_name VARCHAR(50) NOT NULL,
+    scientific_name VARCHAR(100) NOT NULL,
     discover_date DATE NOT NULL,
-    conservation_status TEXT NOT NULL
+    conservation_status VARCHAR(50) NOT NULL
 );
 
 -- Create Sightings table
@@ -25,7 +25,7 @@ CREATE TABLE sightings (
    ranger_id INTEGER REFERENCES rangers(ranger_id),
    species_id INTEGER REFERENCES species(species_id),
    sighting_time TIMESTAMP NOT NULL,
-   location TEXT NOT NULL,
+   location VARCHAR(100) NOT NULL,
    notes TEXT
 );
 
