@@ -77,8 +77,21 @@ CREATE TABLE students (
 
 সংক্ষেপে, `CHAR` ফিক্সড-লেংথ এবং `VARCHAR` ভ্যারিয়েবল-লেংথ ডেটা স্টোর করার জন্য ব্যবহৃত হয়। যেখানে সব ডেটা একই দৈর্ঘ্যের হবে বলে নিশ্চিত, সেখানে `CHAR` ব্যবহার করা যেতে পারে। আর যেখানে ডেটার দৈর্ঘ্য ভিন্ন ভিন্ন হতে পারে, সেখানে `VARCHAR` অধিক উপযোগী।
 
+----
 
-5. Explain the purpose of the `WHERE` clause in a `SELECT` statement.
+### 5. Explain the purpose of the `WHERE` clause in a `SELECT` statement.
+
+উত্তরঃ `WHERE` ক্লজ একটি `SELECT` স্টেটমেন্টে ব্যবহার করা হয় নির্দিষ্ট শর্ত অনুযায়ী **ডেটা ফিল্টার** করার জন্য। এটি ডেটাবেস থেকে শুধুমাত্র সেইসব রেকর্ড নির্বাচন করে, যেগুলো নির্দিষ্ট কোনো শর্ত পূরণ করে। অন্যভাবে বললে, `WHERE` ক্লজ ছাড়া `SELECT` স্টেটমেন্ট পুরো টেবিলের সব রেকর্ড রিটার্ন করে, কিন্তু `WHERE` ব্যবহার করলে আমরা নির্দিষ্ট ডেটা বা রেকর্ডগুলো পেতে পারি।
+
+উদাহরণ:
+
+```sql'
+SELECT * FROM customers
+WHERE country = 'Bangladesh';
+```
+
+উপরের উদাহরণে, `WHERE` ক্লজ ব্যবহার করে `customers` টেবিল থেকে শুধু সেইসব রেকর্ড আনা হয়েছে যাদের `country` কলামের মান "Bangladesh"।
+
 6. What are the `LIMIT` and `OFFSET` clauses used for?
 7. How can you modify data using `UPDATE` statements?
 8. What is the significance of the `JOIN` operation, and how does it work in PostgreSQL?
