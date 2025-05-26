@@ -201,7 +201,140 @@ WHERE age < 18;
 
 ---
 
-8. What is the significance of the `JOIN` operation, and how does it work in PostgreSQL?
-9. Explain the `GROUP BY` clause and its role in aggregation operations.
-10. How can you calculate aggregate functions like `COUNT()`, `SUM()`, and `AVG()` in PostgreSQL?
+### 8. What is the significance of the `JOIN` operation, and how does it work in PostgreSQL?
+
+উত্তরঃ ডাটাবেসে `JOIN` অপারেশন খুবই গুরুত্বপূর্ণ কারণ এটি একাধিক টেবিল থেকে ডেটা একসঙ্গে নিয়ে আসতে ব্যবহৃত হয়। PostgreSQL-এ `JOIN` ব্যবহার করে আপনি বিভিন্ন টেবিলের মধ্যে সম্পর্কযুক্ত ডেটা একত্রিত করতে পারেন। 
+
+PostgreSQL-এ `JOIN` বিভিন্ন ধরনের হতে পারে। এর মূল গঠন হলো:
+
+```sql
+SELECT columns
+FROM table1
+JOIN table2
+ON table1.column = table2.column;
+```
+
+- `table1` এবং `table2`: যে দুটি টেবিল জয়েন করতে চান।
+- `ON`: কোন কলামের মাধ্যমে দুটি টেবিলের সম্পর্ক স্থাপন করা হবে।
+- `columns`: কোন কলামগুলো দেখতে চান।
+
+
+PostgreSQL-এ প্রধানত চার ধরনের `JOIN` ব্যবহৃত হয়:
+
+1. **INNER JOIN**
+
+   এটি শুধুমাত্র সেই রেকর্ডগুলো ফেরত দেয় যেগুলো দুটি টেবিলেই মিলে।  
+
+   **উদাহরণ**:  
+
+   ধরি, `students` টেবিলে আছে:
+
+   | id | name    |
+   |----|---------|
+   | 1  | আলী    |
+   | 2  | রহিম    |
+  
+
+   আর `courses` টেবিলে আছে:
+
+   | course_id | course_name | student_id |
+   |-----------|-------------|------------|
+   | 101       | গণিত        | 1          |
+   | 102       | পদার্থবিদ্যা    | 2          |
+   | 103       | রসায়ন       | 3          |
+
+   এখন, যদি আমরা শুধু সেই ছাত্রদের দেখতে চাই যারা কোনো কোর্স নিয়েছে:
+
+   ```sql
+   SELECT students.name, courses.course_name
+   FROM students
+   INNER JOIN courses
+   ON students.id = courses.student_id;
+   ```
+
+   **আউটপুট**:
+   | name  | course_name |
+   |-------|-------------|
+   | আলী   | গণিত        |
+   | রহিম  | পদার্থবিদ্যা|
+
+   এখানে `student_id = 3` এর কোর্স দেখা যায়নি কারণ `students` টেবিলে `id = 3` নেই।
+
+2. **LEFT JOIN (বা LEFT OUTER JOIN)**  
+
+   এটি প্রথম টেবিল (`table1`) এর সব রেকর্ড ফেরত দেয় এবং দ্বিতীয় টেবিলে মিল থাকলে সেগুলো দেখায়, না থাকলে `NULL` দেয়।  
+
+   **উদাহরণ**:
+
+   ```sql
+   SELECT students.name, courses.course_name
+   FROM students
+   LEFT JOIN courses
+   ON students.id = courses.student_id;
+   ```
+
+   **আউটপুট**:
+   | name   | course_name  |
+   |--------|--------------|
+   | আলী   | গণিত         |
+   | রহিম   | পদার্থবিদ্যা     |
+
+
+3. **RIGHT JOIN (বা RIGHT OUTER JOIN)**  
+
+   এটি দ্বিতীয় টেবিলের সব রেকর্ড ফেরত দেয় এবং প্রথম টেবিলে মিল না থাকলে `NULL` দেয়।  
+
+   **উদাহরণ**:
+
+   ```sql
+   SELECT students.name, courses.course_name
+   FROM students
+   RIGHT JOIN courses
+   ON students.id = courses.student_id;
+   ```
+
+   **আউটপুট**:
+   | name  | course_name |
+   |-------|-------------|
+   | আলী   | গণিত        |
+   | রহিম  | পদার্থবিদ্যা|
+   | NULL  | রসায়ন      |
+
+4. **FULL JOIN (বা FULL OUTER JOIN)**
+
+   এটি দুটি টেবিলের সব রেকর্ড ফেরত দেয়, মিল থাকলে মিলিয়ে দেয়, না থাকলে `NULL` দেয়।  
+
+   **উদাহরণ**:
+
+   ```sql
+   SELECT students.name, courses.course_name
+   FROM students
+   FULL JOIN courses
+   ON students.id = courses.student_id;
+   ```
+
+   **আউটপুট**:
+
+   | name  | course_name  |
+   |-------|--------------|
+   | আলী   | গণিত         |
+   | রহিম  | পদার্থবিদ্যা |
+   | NULL  | রসায়ন       |
+
+
+**কখন কোন `JOIN` ব্যবহার করবেন?**
+
+- **INNER JOIN**: যখন শুধু মিলে যাওয়া রেকর্ড দরকার।
+- **LEFT JOIN**: যখন বামের টেবিলের সব রেকর্ড চাই, মিল হোক বা না হোক।
+- **RIGHT JOIN**: যখন ডানের টেবিলের সব রেকর্ড চাই।
+- **FULL JOIN**: যখন দুটি টেবিলের সব রেকর্ডই চাই।
+
+
+---
+
+### 9. Explain the `GROUP BY` clause and its role in aggregation operations.
+
+---
+
+### 10. How can you calculate aggregate functions like `COUNT()`, `SUM()`, and `AVG()` in PostgreSQL?
 
