@@ -146,7 +146,61 @@ LIMIT 5 OFFSET 10;
 
 ---
 
-7. How can you modify data using `UPDATE` statements?
+### 7. How can you modify data using `UPDATE` statements?
+
+উত্তরঃ ডাটাবেসে ডেটা আপডেট করার জন্য SQL-এ `UPDATE` স্টেটমেন্ট ব্যবহার করা হয়। এটি ব্যবহার করে আপনি একটি টেবিলের নির্দিষ্ট রেকর্ডের মান পরিবর্তন করতে পারেন। 
+
+ধরা যাক, আপনার একটি টেবিল আছে যার নাম `students`, এবং এতে কিছু কলাম আছে, যেমন `id`, `name`, এবং `age`। এখন আপনি এই টেবিলের কোনো রেকর্ডের মান পরিবর্তন করতে চান। `UPDATE` স্টেটমেন্টের সাধারণ গঠন হলো:
+
+```sql
+UPDATE table_name
+SET column_name = new_value
+WHERE condition;
+```
+
+এখানে:
+- `UPDATE table_name`: কোন টেবিলে পরিবর্তন করতে চান, তা উল্লেখ করে।
+- `SET column_name = new_value`: কোন কলামের মান কী দিয়ে আপডেট করতে চান, তা বলে।
+- `WHERE condition`: কোন রেকর্ডগুলো আপডেট হবে, তা নির্দিষ্ট করে। এটি না থাকলে পুরো টেবিলের সব রেকর্ড আপডেট হয়ে যাবে, তাই সাবধান!
+
+**উদাহরণ ১**: একটি রেকর্ড আপডেট
+
+ধরি, আপনি `students` টেবিলে যার `id` ১, তার বয়স ২০ থেকে ২১ করতে চান। তাহলে কোড হবে:
+
+```sql
+UPDATE students
+SET age = 21
+WHERE id = 1;
+```
+
+এখানে শুধু `id = 1` এর রেকর্ডের `age` পরিবর্তন হবে।
+
+**উদাহরণ ২**: একাধিক কলাম আপডেট
+
+যদি আপনি একই রেকর্ডের নাম এবং বয়স দুটোই পরিবর্তন করতে চান, তাহলে:
+
+```sql
+UPDATE students
+SET name = 'Ali', age = 22
+WHERE id = 1;
+```
+
+এখানে `id = 1` এর নাম হবে 'Ali' এবং বয়স হবে 22।
+
+**উদাহরণ ৩**: একাধিক রেকর্ড আপডেট
+
+ধরি, আপনি চান ১৮ বছরের কম বয়সী সবার বয়স ১ বাড়িয়ে দিতে। তাহলে:
+
+```sql
+UPDATE students
+SET age = age + 1
+WHERE age < 18;
+```
+
+এখানে `age = age + 1` মানে বর্তমান বয়সের সাথে ১ যোগ হবে।
+
+---
+
 8. What is the significance of the `JOIN` operation, and how does it work in PostgreSQL?
 9. Explain the `GROUP BY` clause and its role in aggregation operations.
 10. How can you calculate aggregate functions like `COUNT()`, `SUM()`, and `AVG()` in PostgreSQL?
